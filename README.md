@@ -63,6 +63,9 @@ miller_index                             cctbx::miller::index<>          12   20
 # First 5 rows of a specific column
 $ refl-index read reflections.refl.idx -c intensity.sum.value --head 5
 
+# Single row
+$ refl-index read reflections.refl.idx -c intensity.sum.value miller_index --at 100
+
 # Multiple columns, row range
 $ refl-index read reflections.refl.idx -c intensity.sum.value miller_index --start 100 --stop 110
 ```
