@@ -83,12 +83,19 @@ def cmd_read(args):
     # Which columns to read
     col_names = args.columns if args.columns else index.column_names
 
-    start = args.start or 0
-    stop = args.stop
-    head = args.head
-
-    if stop is None and head is not None:
-        stop = start + head
+    # --at is shorthand for --start N --stop N+1
+    if args.at is not None:
+        if args.start is not None or args.stop is not None or args.head is not None:
+            print("Error: --at cannot be used with --start, --stop, or --head", file=sys.stderr)
+            return 1
+        start = args.at
+        stop = args.at + 1
+    else:
+        start = args.start or 0
+        stop = args.stop
+        head = args.head
+        if stop is None and head is not None:
+            stop = start + head
 
     for name in col_names:
         if name not in index:
@@ -125,6 +132,7 @@ def main():
     p_read.add_argument("--start", type=int, help="First row to read")
     p_read.add_argument("--stop", type=int, help="One past last row to read")
     p_read.add_argument("--head", type=int, help="Number of rows to read from start")
+    p_read.add_argument("--at", type=int, help="Read a single row at this index")
 
     args = parser.parse_args()
     commands = {"build": cmd_build, "info": cmd_info, "read": cmd_read}
