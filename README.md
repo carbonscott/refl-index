@@ -30,7 +30,7 @@ the CLI works from anywhere.
 ### Build an index
 
 ```bash
-$ uv run refl-index build /path/to/reflections.refl
+$ refl-index build /path/to/reflections.refl
 Building index for /path/to/reflections.refl ...
 Saved index to /path/to/reflections.refl.idx
   rows:        20,380,600
@@ -42,7 +42,7 @@ Saved index to /path/to/reflections.refl.idx
 ### Inspect an index
 
 ```bash
-$ uv run refl-index info reflections.refl.idx
+$ refl-index info reflections.refl.idx
 Index: reflections.refl.idx
   refl_path:   /path/to/reflections.refl
   file_size:   6,707,407,141
@@ -61,10 +61,10 @@ miller_index                             cctbx::miller::index<>          12   20
 
 ```bash
 # First 5 rows of a specific column
-$ uv run refl-index read reflections.refl.idx -c intensity.sum.value --head 5
+$ refl-index read reflections.refl.idx -c intensity.sum.value --head 5
 
 # Multiple columns, row range
-$ uv run refl-index read reflections.refl.idx -c intensity.sum.value miller_index --start 100 --stop 110
+$ refl-index read reflections.refl.idx -c intensity.sum.value miller_index --start 100 --stop 110
 ```
 
 ## Python Usage
