@@ -12,9 +12,8 @@ dependencies = ["msgpack>=1.0"]
 [project.optional-dependencies]
 numpy = ["numpy>=1.20"]
 dev = [
-    "pytest", 
-    "pytest-cov",
-    "pytest-xdist",
+    "refl-index[numpy]",
+    "pytest",
 ]
 
 [project.scripts]
